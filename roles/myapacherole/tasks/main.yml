@@ -4,3 +4,15 @@
     name:
      - httpd
     state: latest
+ 
+- name: copy start page
+  template:
+    src: templates/page.j2
+    dest: /var/www/html/index.html
+    
+- name: give port access
+   firewalld:
+     port: "{{ port_to_open }}"
+     permanent: yes
+     state: enabled
+...
