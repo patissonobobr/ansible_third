@@ -1,0 +1,24 @@
+---
+- name: install vsftpd
+  package:
+    name:
+     - vsftpd
+     - libselinux-python
+     - libsemanage-python
+    state: latest
+- name: starting vsftpd
+  service: name=vsftpd enabled=true
+  
+- name: SELinux permissions
+  seboolean:
+    name: ftpd_anon_write
+    state: yes
+    persistent: yes
+  notify: restart vsftpd
+ 
+- name: copy config file
+  template:
+    src: vsftpd_conf.j2
+    dest: "{{ vsftpd_path }}"
+
+...
