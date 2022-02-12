@@ -1,6 +1,6 @@
 ---
 - name: install apache
-   package:
+  package:
     name:
      - httpd
     state: latest
