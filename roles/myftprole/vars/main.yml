@@ -4,5 +4,6 @@ port_to_open: 80/tcp
 anonymous_enable: yes
 write_enable: yes
 anon_root: /var/ftp/pub/upload
-local_umask: 022
+pub_root: /var/ftp/pub
 connect_from_port_20: yes
+anon_upload_enabled: yes

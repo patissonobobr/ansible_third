@@ -3,9 +3,25 @@
   package:
     name:
      - vsftpd
-     - libselinux-python
-     - libsemanage-python
     state: latest
+- name: install semanage
+  package:
+    name: 
+     - python3-libsemanage
+     - policycoreutils-python-utils
+
+- name: creating upload directory
+  file:
+    path: "{{ anon_root }}"
+    state: directory
+    mode: '0777'
+
+- name: creating pub directory
+  file:
+    path: "{{ pub_root }}"
+    state: directory
+    mode: '0744'
+    
 - name: starting vsftpd
   service: name=vsftpd enabled=true
   
