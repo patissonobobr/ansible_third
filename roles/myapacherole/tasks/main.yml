@@ -11,9 +11,8 @@
   template:
     src: templates/page.j2
     dest: /var/www/html/index.html
-  notify:
-    - apache restart
-    
+  notify: restart apache
+
 - name: give port access
   firewalld:
     port: "{{ port_to_open }}"
