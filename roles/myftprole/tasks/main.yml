@@ -21,10 +21,7 @@
     path: "{{ pub_root }}"
     state: directory
     mode: '0744'
-    
-- name: starting vsftpd
-  service: name=vsftpd enabled=true
-  
+      
 - name: SELinux permissions
   seboolean:
     name: ftpd_anon_write
@@ -36,5 +33,12 @@
   template:
     src: vsftpd_conf.j2
     dest: "{{ vsftpd_path }}"
+    mode: '0600'
+  notify: restart vsftpd
 
-...
+- name: starting vsftpd
+  service: 
+    name: vsftpd
+    enabled: true
+    state: started 
+ ...
