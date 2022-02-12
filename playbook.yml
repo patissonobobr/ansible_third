@@ -1,0 +1,7 @@
+---
+- name: third playbook
+  hosts: node1.example.com
+  
+  roles:
+    - role: myapacherole
+...
