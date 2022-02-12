@@ -11,6 +11,8 @@
   template:
     src: templates/page.j2
     dest: /var/www/html/index.html
+  notify:
+    - apache restart
     
 - name: give port access
   firewalld:
