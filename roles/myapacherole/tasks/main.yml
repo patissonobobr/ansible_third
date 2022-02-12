@@ -4,6 +4,8 @@
     name:
      - httpd
     state: latest
+- name: starting apache
+  service: name=httpd state=started
  
 - name: copy start page
   template:
@@ -11,8 +13,8 @@
     dest: /var/www/html/index.html
     
 - name: give port access
-   firewalld:
-     port: "{{ port_to_open }}"
-     permanent: yes
-     state: enabled
+  firewalld:
+    port: "{{ port_to_open }}"
+    permanent: yes
+    state: enabled
 ...
