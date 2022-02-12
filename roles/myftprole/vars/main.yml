@@ -8,5 +8,4 @@ local_umask: '022'
 listen: yes
 listen_ipv6: false
 local_enable: false
-local_root: /var/ftp/pub
-anon_root: /var/ftp/pub/upload
+anon_root: /var/ftp/pub

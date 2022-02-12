@@ -15,12 +15,6 @@
     path: "{{ anon_root }}"
     state: directory
     mode: '0777'
-
-- name: creating pub directory
-  file:
-    path: "{{ pub_root }}"
-    state: directory
-    mode: '0744'
       
 - name: SELinux permissions
   seboolean:
