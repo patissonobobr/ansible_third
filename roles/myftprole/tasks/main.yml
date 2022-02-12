@@ -18,7 +18,7 @@
 
 - name: creating pub directory
   file:
-    path: "{{ pub_root }}"
+    path: "{{ local_root }}"
     state: directory
     mode: '0744'
       
@@ -40,5 +40,5 @@
   service: 
     name: vsftpd
     enabled: true
-    state: started 
- ...
+    state: started
+...
