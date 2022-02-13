@@ -10,12 +10,17 @@
      - python3-libsemanage
      - policycoreutils-python-utils
 
-- name: creating upload directory
+- name: creating anon directory
   file:
     path: "{{ anon_root }}"
     state: directory
+
+- name: creating upload directory
+  file:
+    path: /var/ftp/pub/upload
+    state: directory
     mode: '0777'
-      
+    
 - name: SELinux permissions
   seboolean:
     name: ftpd_anon_write
