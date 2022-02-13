@@ -4,11 +4,18 @@
     name:
      - vsftpd
     state: latest
+
 - name: install semanage
   package:
     name: 
      - python3-libsemanage
      - policycoreutils-python-utils
+
+- name: FTP permissions
+  firewalld:
+    port: 21/tcp
+    permanent: true
+    state: enabled
 
 - name: creating anon directory
   file:
@@ -29,11 +36,11 @@
   notify: restart vsftpd
  
 - name: One more SELinux permission
-   sefcontext:
-      target: '/var/ftp/pub/upload(/.*)?' 
-      setype: public_content_rw_t
-      state: present      
- 
+  sefcontext:
+    target: '/var/ftp/pub/upload(/.*)?' 
+    setype: public_content_rw_t
+    state: present
+
 - name: copy config file
   template:
     src: vsftpd_conf.j2
