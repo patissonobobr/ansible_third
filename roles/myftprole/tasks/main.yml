@@ -28,6 +28,12 @@
     persistent: yes
   notify: restart vsftpd
  
+ - name: One more SELinux permission
+   sefcontext:
+      target: '/var/ftp/pub/upload(/.*)?' 
+      setype: public_content_rw_t
+      state: present      
+ 
 - name: copy config file
   template:
     src: vsftpd_conf.j2
