@@ -28,7 +28,7 @@
     persistent: yes
   notify: restart vsftpd
  
- - name: One more SELinux permission
+- name: One more SELinux permission
    sefcontext:
       target: '/var/ftp/pub/upload(/.*)?' 
       setype: public_content_rw_t
@@ -46,4 +46,7 @@
     name: vsftpd
     enabled: true
     state: started
+    
+- name: Run restore context to reload selinux
+  command: restorecon -irv /var/ftp/pub/upload
 ...
